@@ -1,6 +1,6 @@
-**This is a simple benchmark for Apache Mina Core TCP Client**
+<H2> This is a simple benchmark for Apache Mina Core TCP Client</H2>
 
-**Intro**
+<H3>Intro</H3>
 
 Current implementation of _IoServiceStatistics_ is blocking - it locks on _throughputCalculationLock_ for almost all operation.
 
@@ -8,13 +8,13 @@ However, _IoServiceStatistics_ is used by all threads which writes to _IoSession
 
 There is a concern that _IoServiceStatistics_ slows down performance
 
-**Goals**
+<H3>Goals</H3>
 
 The aim of the benchmark is to compare performance of: 
 1. Mina TCP Client with **blocking** _IoServiceStatistics_ implementation (original)
 2. Mina TCP Client with **non-blocking** _IoServiceStatistics_ implementation (patched)
 
-**Benchmark details**
+<H3>Benchmark details</H3>
 
 * There are _N_ _IoSession_'s between _Client_ and _Server_ 
 * There are _N_ threads, each thread has its own _IoSession_ and they write messages simultaneously
@@ -43,21 +43,21 @@ The aim of the benchmark is to compare performance of:
   * 10 real iterations which are _used_ in summary result
   * 50 threads (_N_=50), each thread sends 50000 messages for each iteration
 
-**How to run**
+<H3>How to run</H3>
 
 1. Run benchmark with **blocking** _IoServiceStatistics_:
  
-<code>
+   ```
    mvn clean compile exec:exec@blocking
-</code>
+   ```
 
 2. Run benchmark with **non-blocking** _IoServiceStatistics_:
 
-<code>
+   ```
    mvn clean compile exec:exec@non-blocking
-</code>
+   ```
 
-**Results**
+<H3>Results</H3>
 
 1. **blocking** _IoServiceStatistics_ (original):
 ```
@@ -79,7 +79,7 @@ p25: 44 mcs, p50: 85 mcs, p75: 150 mcs, p90: 239 mcs, p95: 319 mcs, p99: 1311 mc
 ================================================
 ```
 
-**Summary**
+<H3>Summary</H3>
 
 The results show that _IoServiceStatistics_ introduces huge latencies for the benchmark condition:
 
